@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script>
+        window.onload = function () {
+
+            var totalVisitors = 100;
+            var visitorsData = {
+                "New vs Returning Visitors": [{
+                    click: visitorsChartDrilldownHandler,
+                    cursor: "pointer",
+                    explodeOnClick: false,
+                    innerRadius: "75%",
+                    legendMarkerType: "square",
+                    name: "Racial Diversity",
+                    radius: "100%",
+                    showInLegend: true,
+                    startAngle: 90,
+                    type: "doughnut",
+                    dataPoints: [
+                        { y: 10, name: "Coaches", color: "#E7823A" },
+                        { y: 10, name: "Assistant Coaches", color: "#546BC1" },
+                        { y: 10, name: "CEO-Pres", color: "#bae73a" },
+                        { y: 10, name: "General Manager", color: "#e73a77" },
+                        { y: 10, name: "League Office", color: "#3ae757" },
+                        { y: 10, name: "Owners", color: "#dd3ae7" },
+                        { y: 10, name: "Staff", color: "#3ae3e7" },
+                        { y: 10, name: "Team Management", color: "#863ae7" },
+                        { y: 10, name: "Players", color: "#e7543a" }
+                    ]
+                }],
+                "Players": [{
+                    color: "#e7543a",
+                    name: "Players",
+                    type: "column",
+                    dataPoints: [
+                        { y: 18.10, label: "White" },
+                        { y: 74.8, label: "African-American" },
+                        { y: 0.8, label: "Asian" },
+                        { y: 2.4, label: "Latino" },
+                        { y: 0, label: "Other" }
+                    ]
+                }],                
+                "Coaches": [{
+                    color: "#E7823A",
+                    name: "Coaches",
+                    type: "column",
+                    dataPoints: [
+                        { y: 66.7, label: "White" },
+                        { y: 26.7, label: "African-American" },
+                        { y: 3.3, label: "Asian" },
+                        { y: 3.3, label: "Latino" },
+                        { y: 0, label: "Other" }
+                    ]
+                }],
+                "Assistant Coaches": [{
+                    color: "#546BC1",
+                    name: "Assistant Coaches",
+                    type: "column",
+                    dataPoints: [
+                        { y: 57.5, label: "White" },
+                        { y: 37.1, label: "African-American" },
+                        { y: 3, label: "Asian" },
+                        { y: 0.6, label: "Latino" },
+                        { y: 1.8, label: "Other" }
+                    ]
+                }],
+                "CEO-Pres": [{
+                    color: "#bae73a",
+                    name: "CEO-pres",
+                    type: "column",
+                    dataPoints: [
+                        { y: 89.3, label: "White" },
+                        { y: 8.9, label: "African-American" },
+                        { y: 1.8, label: "Asian" },
+                        { y: 0, label: "Latino" },
+                        { y: 0, label: "Other" }
+                    ]
+                }],
+                "General Manager": [{
+                    color: "#e73a77",
+                    name: "General Manager",
+                    type: "column",
+                    dataPoints: [
+                        { y: 73.9, label: "White" },
+                        { y: 21.7, label: "African-American" },
+                        { y: 0, label: "Asian" },
+                        { y: 0, label: "Latino" },
+                        { y: 4.3, label: "Other" }
+                    ]
+                }],
+                "League Office": [{
+                    color: "#3ae757",
+                    name: "League Office",
+                    type: "column",
+                    dataPoints: [
+                        { y: 62.4, label: "White" },
+                        { y: 15.9, label: "African-American" },
+                        { y: 6.7, label: "Asian" },
+                        { y: 10.4, label: "Latino" },
+                        { y: 14.6, label: "Other" }
+                    ]
+                }],
+                "Owners": [{
+                    color: "#dd3ae7",
+                    name: "Owners",
+                    type: "column",
+                    dataPoints: [
+                        { y: 91.4, label: "White" },
+                        { y: 2.9, label: "African-American" },
+                        { y: 0, label: "Asian" },
+                        { y: 2.9, label: "Latino" },
+                        { y: 2.9, label: "Other" }
+                    ]
+                }],
+                "Staff": [{
+                    color: "#3ae3e7",
+                    name: "Staff",
+                    type: "column",
+                    dataPoints: [
+                        { y: 57.5, label: "White" },
+                        { y: 37.1, label: "African-American" },
+                        { y: 3, label: "Asian" },
+                        { y: 0.6, label: "Latino" },
+                        { y: 1.8, label: "Other" }
+                    ]
+                }],
+                "Team Management": [{
+                    color: "#863ae7",
+                    name: "Team Management",
+                    type: "column",
+                    dataPoints: [
+                        { y: 57.5, label: "White" },
+                        { y: 37.1, label: "African-American" },
+                        { y: 3, label: "Asian" },
+                        { y: 0.6, label: "Latino" },
+                        { y: 1.8, label: "Other" }
+                    ]
+                }],            };
+
+            var newVSReturningVisitorsOptions = {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Racial Diversity in 2019"
+                },
+                subtitles: [{
+                    text: "Click on Any Segment to Drilldown",
+                    backgroundColor: "#2eacd1",
+                    fontSize: 16,
+                    fontColor: "white",
+                    padding: 5
+                }],
+                legend: {
+                    fontFamily: "calibri",
+                    fontSize: 14,
+                    // itemTextFormatter: function (e) {
+                    //     return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalVisitors * 100) + "%";
+                    // }
+                },
+                data: []
+            };
+
+            var visitorsDrilldownedChartOptions = {
+                animationEnabled: true,
+                theme: "light2",
+                axisX: {
+                    labelFontColor: "#717171",
+                    lineColor: "#a2a2a2",
+                    tickColor: "#a2a2a2"
+                },
+                axisY: {
+                    gridThickness: 0,
+                    includeZero: false,
+                    labelFontColor: "#717171",
+                    lineColor: "#a2a2a2",
+                    tickColor: "#a2a2a2",
+                    lineThickness: 1
+                },
+                data: []
+            };
+
+            var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+            chart.options.data = visitorsData["New vs Returning Visitors"];
+            chart.render();
+
+            function visitorsChartDrilldownHandler(e) {
+                chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
+                chart.options.data = visitorsData[e.dataPoint.name];
+                chart.options.title = { text: e.dataPoint.name }
+                chart.render();
+                $("#backButton").toggleClass("invisible");
+            }
+
+            $("#backButton").click(function () {
+                $(this).toggleClass("invisible");
+                chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+                chart.options.data = visitorsData["New vs Returning Visitors"];
+                chart.render();
+            });
+
+        }
+    </script>
+    <style>
+        #backButton {
+            border-radius: 4px;
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            background-color: #2eacd1;
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .invisible {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Home</a><br>
+                <a class="navbar-brand" href="/drill_down">Racial Diversity 2019</a><br>
+                <a class="navbar-brand" href="/get_coaches">See Coach data</a><br>
+            </div>
+        </div>
+    </nav>
+
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <button class="btn invisible" id="backButton">
+        < Back</button>
+            <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div> 
+</body>
+
+</html>
