@@ -21,8 +21,13 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+
+@app.route("/nba_vp_2")
+def Javier():
+    return render_template('nba_vp_2.html')
+
 @app.route("/drill_down")
-def analysis():
+def drill_down():
     return render_template('drill_down.html')
 
 
@@ -54,13 +59,6 @@ def get_coaches():
             conn.close()
 
     return jsonify(coaches)
-        # return render_template('visualization.html', dict = coaches)
-        # response = Response(
-        #     mimetype="application/json",
-        #     response=json.dumps(coaches),
-        #     status=201
-        # )
-        # return response
 if __name__ == "__main__":
     app.run(debug = True)
 
