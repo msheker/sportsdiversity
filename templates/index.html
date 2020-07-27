@@ -2,47 +2,78 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Charts on African American Sports Executives</title>
+  <title>Charts on Racial Diversity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <link rel="stylesheet" href="static/style.css">
-  <link rel="stylesheet" href ="{{url_for('static', filename='style.css')}}">
+  <!-- Asd the popper JS code for the dropdown <menu> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href ="{{url_for('static', filename='style/index_style.css')}}">
 </head>
 <body>
-  <div class="wrapper">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">Home</a><br>
-          <!-- <a class="navbar-brand" href="/sunburst">Sunburst</a><br> -->
-          <a class="navbar-brand" href="/drill_down">Racial Diversity 2019</a><br>
-          <a class = "navbar-brand" href="/get_coaches" >See Raw Data</a><br>
-                    <a class="navbar-brand" href="/nba_vp_2">Time Series Data</a><br>
+<nav class="navbar navbar-expand-lg navbar-bright bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home</a><br></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/sunburst">Sunburst</a><br>>
+      </li>
+      <li class="nav-item active">
+        <a class="navbar-brand" href="/drill_down">Racial Diversity 2019 </a><br>
+      </li>
+           <a class="navbar-brand" href="/get_coaches">See Raw Data</a><br>
+        </li> 
 
-
-        </div>
-      </div>
-    </nav>
+    </ul>
+  </div>
+</nav>
     <div class="container">
-      <div class="row margin-top-50">
-        <div class="col-md-2">
-          
-        </div>
-        <div class="col-md-10">
-          <div id="table-area" class="">
-            <table id="sports-table" class="table table-striped">
-              <thead>
-                <tr>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
+      <!--Grid row-->
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Time Series
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/nba_coaches_2">coaches</a>
+            <a class="dropdown-item" href="/nba_players_2">players</a>
+            <a class="dropdown-item" href="/nba_owners_2">owners</a>
+            <a class="dropdown-item" href="/nba_vp_2">VPs</a>
           </div>
+          </div>
+
+    
+        <!--Grid column-->
+        <div class="col-6">
+    Recently there has been a great deal of discussion of race issues in the United States, and professional sports has
+    become a symbol and a battleground for competing views of racial diversity and racial equity. Many publications have
+    tried to show the racial diversity present in sports organizations, but as data consumers we usually just see the
+    summaries and the headline numbers, e.g. the “Racial and Gender Report Card” from the Institute for Diversity and Ethics
+    in Sports. Unfortunately, we can’t really explore the raw data ourselves. Our goal is to present the racial diversity
+    data from the NBA in an interactive and accessible manner that will allow users to explore the data for themselves.
+    Data:
+    Our data comes from tidesport.org (https://www.tidesport.org/nba) and it includes the current and historical data for
+    racial (and gender) equity in sports franchises. The data includes both headline numbers, such as coaches and majority
+    owners, and also behind the scenes data, such as trainers and professional staff.
+    
+        </div>
+        <div class="col">
+                    <img src="static/Images/NBA.jpg" class="img-fluid mb-2" alt="NBA Logo">
+
         </div>
       </div>
     </div>
-  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
   <!-- <script src="data.js"></script> create the data file -->
   <!-- <script href="{{url_for('static', filename='app.js')}}"></script> -->

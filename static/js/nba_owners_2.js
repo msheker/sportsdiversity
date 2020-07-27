@@ -32,8 +32,8 @@ function makeResponsive() {
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // csv import & format data 
-  console.log("A")
-  d3.csv("static/nba_vp_2.csv").then(function(nbaData) {
+
+  d3.csv("static/js/nba_owners_2.csv").then(function(nbaData) {
     var parseTime = d3.timeParse("%Y");
     nbaData.forEach(function(data) {
       data.date = parseTime(data.date);
@@ -41,7 +41,7 @@ function makeResponsive() {
       data.African = +data.African;
       data.Latino = +data.Latino;
     });
-    console.log("B")
+
     // Create  scales
     var xTimeScale = d3.scaleTime()
       .domain(d3.extent(nbaData, d => d.date))
@@ -204,7 +204,7 @@ function makeResponsive() {
       .attr("class", "tooltip")
       .offset([65, 0])
       .html(function(d,k) {
-        return (`Number of VPs: ${d.White}`);
+        return (`Number of Owners: ${d.White}`);
       });
 
       // Create the tooltip in chartGroup.
@@ -221,9 +221,9 @@ function makeResponsive() {
 
     // Create axes labels
     chartGroup.append("text")
-      .attr("transform", `translate(${chartwidth / 2}, ${yMax - 450})`)
+      .attr("transform", `translate(${chartwidth / 2}, ${yMax - 65})`)
       .attr("class", "title")
-      .text("NBA VPs by Ethnicity")
+      .text("NBA Owners by Ethnicity ")
 
     // Create axes labels
     chartGroup.append("text")
@@ -232,7 +232,7 @@ function makeResponsive() {
       .attr("x", 0 - (chartheight / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Number of VPs");
+      .text("Number of Owners");
       var j = 1;
 
 
@@ -244,9 +244,9 @@ function makeResponsive() {
       .text("Year");
 
     console.log(nbaData["columns"].slice(1));
-
+    
     var legends = svg.append("g")
-          .attr("transform", `translate(${chartwidth + 45}, ${yMax - 300})`)
+          .attr("transform", `translate(${chartwidth + 20}, ${yMax - 40})`)
           .selectAll(".legends")
           .data(nbaData["columns"].slice(1));
     var legend = legends
